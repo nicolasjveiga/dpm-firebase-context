@@ -17,8 +17,8 @@ Este é um projeto didático desenvolvido em **React Native com Expo**, utilizan
 ### 1. Clone o projeto
 
 ```bash
-git clone https://github.com/seu-usuario/seu-repo.git
-cd seu-repo
+git clone https://github.com/nicolasjveiga/dpm-firebase-context.git
+cd dpm-firebase-context
 ```
 
 ### 2. Instale as dependências
