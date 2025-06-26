@@ -11,6 +11,8 @@ import RegisterScreen from "./screens/RegisterScreen";
 import BookListScreen from "./screens/BookListScreen";
 import BookEditScreen from "./screens/BookEditScreen";
 
+import { ThemeProvider } from "./contexts/ThemeContext";
+
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -20,6 +22,7 @@ export default function App() {
   if (!app || loading) return null;
 
   return (
+    <ThemeProvider>
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         {!user ? (
@@ -37,5 +40,6 @@ export default function App() {
         )}
       </Stack.Navigator>
     </NavigationContainer>
+  </ThemeProvider>
   );
 }
