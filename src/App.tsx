@@ -23,23 +23,23 @@ export default function App() {
 
   return (
     <ThemeProvider>
-    <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
-        {!user ? (
-          <>
-            <Stack.Screen name="Welcome" component={WelcomeScreen} />
-            <Stack.Screen name="Login" component={LoginScreen} />
-            <Stack.Screen name="Register" component={RegisterScreen} />
-          </>
-        ) : (
-          <>
-            <Stack.Screen name="Books" component={BookListScreen} />
-            <Stack.Screen name="NewBook" component={BookEditScreen} />
-            <Stack.Screen name="EditBook" component={BookEditScreen} />
-          </>
-        )}
-      </Stack.Navigator>
-    </NavigationContainer>
-  </ThemeProvider>
+      <NavigationContainer>
+        <Stack.Navigator screenOptions={{ headerShown: false }}>
+          {!user ? (
+            <>
+              <Stack.Screen name="Welcome" component={WelcomeScreen} />
+              <Stack.Screen name="Login" component={LoginScreen} />
+              <Stack.Screen name="Register" component={RegisterScreen} />
+            </>
+          ) : (
+            <>
+              <Stack.Screen name="Books" component={BookListScreen} />
+              <Stack.Screen name="NewBook" component={BookEditScreen} />
+              <Stack.Screen name="EditBook" component={BookEditScreen} />
+            </>
+          )}
+        </Stack.Navigator>
+      </NavigationContainer>
+    </ThemeProvider>
   );
 }
