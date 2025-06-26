@@ -2,28 +2,26 @@ import React, { useState } from "react";
 import { View, TextInput, Button, Text, StyleSheet } from "react-native";
 import useAuth from "../firebase/hooks/useAuth";
 
-export default function RegisterScreen({ navigation }: any) {
-  const { registerUser, login } = useAuth();
+export default function LoginScreen() {
+  const { login } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleRegister = async () => {
+  const handleLogin = async () => {
     try {
-      await registerUser(email, password);
       await login(email, password);
-      alert("Usuário cadastrado com sucesso!");
     } catch (err) {
       if (err instanceof Error) {
-        alert("Erro ao cadastrar: " + err.message);
+        alert("Erro ao entrar: " + err.message);
       } else {
-        alert("Erro ao cadastrar.");
+        alert("Erro ao entrar.");
       }
     }
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Cadastro</Text>
+      <Text style={styles.title}>Entrar</Text>
       <TextInput
         style={styles.input}
         placeholder="E-mail"
@@ -38,31 +36,20 @@ export default function RegisterScreen({ navigation }: any) {
         value={password}
         secureTextEntry
       />
-      <Button title="Cadastrar" onPress={handleRegister} />
+      <Button title="Entrar" onPress={handleLogin} />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 24,
-    justifyContent: "center",
-    backgroundColor: "#f0f2f5",
-  },
-  title: {
-    fontSize: 26,
-    fontWeight: "bold",
-    marginBottom: 24,
-    textAlign: "center",
-    color: "#333",
-  },
+  container: { flex: 1, padding: 20, justifyContent: "center" },
+  title: { fontSize: 24, marginBottom: 20, textAlign: "center" },
   input: {
     borderWidth: 1,
     borderColor: "#ccc",
-    borderRadius: 10,
-    marginBottom: 16,
-    padding: 12,
+    borderRadius: 8,
+    marginBottom: 10,
+    padding: 10,
     fontSize: 16,
     backgroundColor: "#fff",
   },
