@@ -1,13 +1,15 @@
-import React, { useState } from "react";
-import { View, TextInput, Button, Text, StyleSheet } from "react-native";
+import React from "react";
+import { View, StyleSheet } from "react-native";
 import useAuth from "../firebase/hooks/useAuth";
+import { useTheme } from "../contexts/ThemeContext";
+import Header from "../components/Header";
+import AuthForm from "../components/AuthForm";
 
 export default function RegisterScreen({ navigation }: any) {
   const { registerUser, login } = useAuth();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const { colors } = useTheme();
 
-  const handleRegister = async () => {
+  const handleRegister = async (email: string, password: string) => {
     try {
       await registerUser(email, password);
       await login(email, password);
@@ -22,23 +24,9 @@ export default function RegisterScreen({ navigation }: any) {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Cadastro</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="E-mail"
-        onChangeText={setEmail}
-        value={email}
-        keyboardType="email-address"
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Senha"
-        onChangeText={setPassword}
-        value={password}
-        secureTextEntry
-      />
-      <Button title="Cadastrar" onPress={handleRegister} />
+    <View style={[styles.container, { backgroundColor: colors.background }]}>
+      <Header title="Cadastro" onBack={() => navigation.goBack()} />
+      <AuthForm onSubmit={handleRegister} submitLabel="Cadastrar" />
     </View>
   );
 }
@@ -46,24 +34,5 @@ export default function RegisterScreen({ navigation }: any) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 24,
-    justifyContent: "center",
-    backgroundColor: "#f0f2f5",
-  },
-  title: {
-    fontSize: 26,
-    fontWeight: "bold",
-    marginBottom: 24,
-    textAlign: "center",
-    color: "#333",
-  },
-  input: {
-    borderWidth: 1,
-    borderColor: "#ccc",
-    borderRadius: 10,
-    marginBottom: 16,
-    padding: 12,
-    fontSize: 16,
-    backgroundColor: "#fff",
   },
 });
